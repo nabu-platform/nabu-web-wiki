@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><restInterface><method>GET</method><path>/toc/{id: .+}</path><responseHeaders>Content-Type, Content-Length</responseHeaders><outputAsStream>true</outputAsStream><configurationType>nabu.web.wiki.types.configuration</configurationType></restInterface>

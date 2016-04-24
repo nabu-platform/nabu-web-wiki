@@ -1,0 +1,18 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="5cae8bd3-e1d0-4c20-912c-9626ddee836b">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="4272cd38-bb7b-4bc0-a13c-5ce99c77c1ab">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="5723b9ff-a1b2-44a5-a3ac-3c5260035cbd" serviceId="nabu.web.wiki.rest.list" resultName="result49b1adcdb67344929403cc3ae43a6c59" invocationOrder="0" temporaryMapping="true" x="24" y="63">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="a738c44b-f1a5-4346-ba69-4b05c406dcd3" optional="false" fixedValue="false">
+				<from>input/configuration</from>
+				<to>configuration</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c60dbbad-7586-4cd2-8049-e05a3499d8c7" optional="false" fixedValue="false">
+				<from>input/query/recursive</from>
+				<to>query/recursive</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="ff74ff2c-0a81-469c-bbaf-4b241a9929bd" optional="false" fixedValue="false">
+			<from>result49b1adcdb67344929403cc3ae43a6c59/content</from>
+			<to>output/content</to>
+		</steps>
+	</steps>
+</sequence>

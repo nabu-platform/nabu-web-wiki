@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><restInterface><method>PUT</method><path>/item/{id: .+}</path><headerParameters>Content-Type</headerParameters><inputAsStream>true</inputAsStream><configurationType>nabu.web.wiki.types.configuration</configurationType></restInterface>

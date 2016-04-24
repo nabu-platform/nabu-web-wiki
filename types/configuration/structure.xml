@@ -1,0 +1,5 @@
+<structure name="configuration">
+    <field name="wikiId" type="java.lang.String"/>
+    <field name="downloadPath" type="java.lang.String"/>
+    <field name="viewPath" type="java.lang.String"/>
+</structure>

@@ -1,0 +1,32 @@
+<sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="43d0cee0-e06d-4150-a8b1-a8ddefe74c7c">
+	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="b018ba2c-91ab-4ea6-9c06-e87324b8a706">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="dfda566a-819c-45d9-944f-cbc8315b94ca" serviceId="nabu.web.wiki.Services.write" resultName="resultee1d354e7133460d87d898cb27a360a3" invocationOrder="1" temporaryMapping="true" x="97" y="130">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e786a169-e82f-4212-9a10-78622bfd6023" optional="false" fixedValue="false">
+				<from>input/configuration/wikiId</from>
+				<to>wikiId</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="8212131e-652c-47b8-a1f2-7c09e5c71fec" optional="false" fixedValue="false">
+				<from>resultaad1dad1ff9040cbb1ddbec803c94a75/properties</from>
+				<to>properties</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="b31c6236-84b9-4013-a26e-982b41ec76fb" optional="false" fixedValue="false">
+				<from>input/path/id</from>
+				<to>path</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="4415584b-4640-4517-ae99-2df4838a56c2" optional="false" fixedValue="false">
+				<from>input/content</from>
+				<to>content</to>
+			</steps>
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cdda3053-8d45-482e-8069-ed9717a0c6c4" optional="false" fixedValue="false">
+				<from>input/header/contentType[0]</from>
+				<to>contentType</to>
+			</steps>
+		</steps>
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b1d17aa9-5683-48e7-86a0-042be5f3137c" serviceId="nabu.utils.Object.toProperties" resultName="resultaad1dad1ff9040cbb1ddbec803c94a75" invocationOrder="0" temporaryMapping="true" x="46" y="17">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="092c380f-33e5-4412-9809-075d83aa57cf" optional="false" fixedValue="false">
+				<from>input/configuration</from>
+				<to>object</to>
+			</steps>
+		</steps>
+	</steps>
+</sequence>
