@@ -1,4 +1,4 @@
-if (!nabu) { nabu = {}; }
+if (typeof(nabu) == "undefined") { nabu = {}; }
 if (!nabu.constants) { nabu.constants = {}; }
 if (!nabu.services) { nabu.services = {}; }
 
@@ -46,7 +46,7 @@ nabu.constants.keys = {
 	F12: 123
 };
 
-nabu.services.KeyListener = new function() {
+nabu.services.KeyListener = function() {
 	var self = this;
 	// contains keys that are currently active
 	this.active = [];
@@ -61,15 +61,23 @@ nabu.services.KeyListener = new function() {
 		return self.active.indexOf(key) >= 0;
 	};
 	this.listen = function(handler) {
+		var keys = [];
+		for (var i = 1; i < arguments.length; i++) {
+			keys.push(arguments[i]);
+		}
 		self.listeners.push({
 			handler: handler,
-			keys: arguments.slice(1, arguments.length)
+			keys: keys
 		});
 	};
 	this.unlisten = function(unlistener) {
+		var keys = [];
+		for (var i = 1; i < arguments.length; i++) {
+			keys.push(arguments[i]);
+		}
 		self.unlisteners.push({
 			handler: handler,
-			keys: arguments.slice(1, arguments.length)
+			keys: keys
 		});
 	};
 	this.deactivateAll = function() {

@@ -1,4 +1,4 @@
-if (!nabu) { nabu = {}; }
+if (typeof(nabu) == "undefined") { nabu = {}; }
 if (!nabu.services) { nabu.services = {}; }
 
 nabu.services.Editor = function(element) {
@@ -25,7 +25,7 @@ nabu.services.Editor = function(element) {
 	};
 
 	this.editing = function() {
-		return self.active != null && self.active.contentEditable;
+		return self.active != null && self.active.contentEditable == "true";
 	};
 
 	this.unedit = function() {
@@ -104,6 +104,9 @@ nabu.services.Editor = function(element) {
 	};
 
 	this.initialize = function() {
+		if (!self.element.classList.contains("editor")) {
+			self.element.classList.add("editor");
+		}
 		if (self.active == null) {
 			var first = nabu.utils.elements.first(self.element);
 			if (first == null) {
@@ -113,12 +116,21 @@ nabu.services.Editor = function(element) {
 			self.select(first);
 		}
 		if (self.keyListener == null) {
+			element.addEventListener("mousedown", function(event) {
+				if (!self.editing()) {
+					console.log("EDITING", self.active, self.editing());
+					self.select(event.target);
+					event.preventDefault();
+					event.stopPropagation();
+				}
+			});
+
 			self.keyListener = new nabu.services.KeyListener();
 			self.keyListener.listen(self.edit, nabu.constants.keys.F2);
 			self.keyListener.listen(self.remove, nabu.constants.keys.DELETE);
 
 			// add a paragraph
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				var paragraph = document.createElement("p");
 				// if we have an active element, add after that
 				if (self.active != null) {
@@ -135,11 +147,14 @@ nabu.services.Editor = function(element) {
 				}
 				self.select(paragraph);
 				self.edit();
+				event.preventDefault();
 			}, nabu.constants.keys.CTRL, nabu.constants.keys.ENTER);
 
 			// stop editing
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				self.unedit();
+				event.stopPropagation();
+				event.preventDefault();
 			}, nabu.constants.keys.ALT, nabu.constants.keys.ENTER);
 
 			// start editing
@@ -150,7 +165,7 @@ nabu.services.Editor = function(element) {
 			}, nabu.constants.keys.ENTER);
 
 			// select next
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				if (!self.editing()) {
 					event.preventDefault();
 					if (self.active == null) {
@@ -166,20 +181,20 @@ nabu.services.Editor = function(element) {
 			}, nabu.constants.keys.DOWN);
 
 			// move down
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				if (!self.editing()) {
 					event.preventDefault();
 					if (self.active != null) {
 						var next = nabu.utils.elements.next(self.active);
 						if (next) {
-							self.active.parentNode.insertBefore(self.active, next);
+							self.active.parentNode.insertBefore(next, self.active);
 						}
 					}
 				}
 			}, nabu.constants.keys.CTRL, nabu.constants.keys.DOWN);
 
 			// select previous
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				if (!self.editing()) {
 					event.preventDefault();
 					if (self.active == null) {
@@ -195,7 +210,7 @@ nabu.services.Editor = function(element) {
 			}, nabu.constants.keys.UP);
 
 			// move up
-			self.keyListener.listen(function() {
+			self.keyListener.listen(function(event) {
 				if (!self.editing()) {
 					event.preventDefault();
 					if (self.active != null) {
@@ -215,7 +230,7 @@ nabu.services.Editor = function(element) {
 				else {
 					self.deselect();
 				}
-			}, nabu.constants.keys.ESCAPE);
+			}, nabu.constants.keys.ESC);
 		}
 	};
 

@@ -1,4 +1,4 @@
-if (!nabu) { nabu = {}; }
+if (typeof(nabu) == "undefined") { nabu = {}; }
 if (!nabu.components) { nabu.components = {}; }
 
 
