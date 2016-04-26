@@ -125,7 +125,7 @@ nabu.services.Editor = function(element) {
 		}
 		if (self.keyListener == null) {
 			element.addEventListener("mousedown", function(event) {
-				if (!self.editing()) {
+				if (!self.editing() && event.target != self.element) {
 					console.log("EDITING", self.active, self.editing());
 					self.select(event.target);
 					event.preventDefault();
