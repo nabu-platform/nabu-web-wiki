@@ -142,6 +142,64 @@ nabu.components.wiki = {
 				}
 			}
 		}
-	})
+	}),
+	Directory: function(wikiPath, path) {
+		var self = this;
+		this.fullPath = wikiPath ? wikiPath + "/wiki" : "wiki";
+		this.path = path ? path : "/";
+
+		this.delete = function(name, handler) {
+			return nabu.utils.ajax({
+				method: "DELETE",
+				url: self.fullPath + "/item/" + self.path,
+				success: handler
+			});
+		};
+
+		this.mkdir = function(name, handler) {
+			return nabu.utils.ajax({
+				method: "PUT",
+				url: self.fullPath + "/item/" + self.path + "?type=application/directory",
+				success: handler
+			});
+		};
+
+		this.touch = function(name, handler, contentType) {
+			return nabu.utils.ajax({
+				method: "PUT",
+				url: self.fullPath + "/item/" + self.path + (contentType ? "?type=" + contentType : ""),
+				success: handler
+			});
+		};
+
+		this.write = function(name, handler, content, contentType) {
+			return nabu.utils.ajax({
+				method: "PUT",
+				url: self.fullPath + "/item/" + self.path + (contentType ? "?type=" + contentType : ""),
+				data: content,
+				success: handler
+			});
+		};
+
+		this.read = function(name, handler, contentType) {
+			return nabu.utils.ajax({
+				method: "GET",
+				url: self.fullPath + "/item/" + self.path + (contentType ? "?type=" + contentType : ""),
+				success: function(response) {
+					handler(response.responseText);
+				}
+			});
+		};
+
+		this.list = function(handler) {
+			return nabu.utils.ajax({
+				method: "GET",
+				url: self.fullPath + "/list" + (self.path ? "/" + self.path : ""),
+				success: function(response) {
+					handler(JSON.parse(response.responseText));
+				}
+			});
+		};
+	}
 };
 
