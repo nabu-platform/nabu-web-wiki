@@ -310,15 +310,6 @@ nabu.services.Editor = function(element) {
 				}
 			}, nabu.constants.keys.ALT, nabu.constants.keys.A);
 
-			// make cite
-			self.keyListener.listen(function(event) {
-				if (self.active != null) {
-					event.preventDefault();
-					event.stopPropagation();
-					self.transform("cite");
-				}
-			}, nabu.constants.keys.ALT, nabu.constants.keys.Q);
-
 			// make paragraph
 			self.keyListener.listen(function(event) {
 				if (self.active != null) {
