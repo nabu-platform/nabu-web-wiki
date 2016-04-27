@@ -1,26 +1,35 @@
 if (typeof(nabu) == "undefined") { nabu = {}; }
 if (!nabu.components) { nabu.components = {}; }
 
-
 nabu.components.wiki = {
-	Page: Vue.extend({
-		props: ["path", "id", "edit"],
+	Page: Vue.component("n-wiki-page", {
+		props: ["path", "wikiPath", "edit"],
 		template: "<div class='n-wiki-page'></div>",
+		data: function() {
+			return {
+				article: null
+			};
+		},
 		activate: function(done) {
+			var self = this;
+			var type = this.edit ? "application/vnd-nabu-ehtml" : "text/html";
+			var path = this.wikiPath ? this.wikiPath + "/wiki/item" : "wiki/item";
 			nabu.utils.ajax({
-				url: this.path + "/download/" + this.id,
+				url: path + "/" + this.path + "?type=" + type,
 				success: function(response) {
-					var article = response.responseText;
-					this.$el.innerHTML = article;
-					if (!edit) {
-						this.addAnchors();
-					}
-					else {
-						this.addBlockQuoteHandler();
-					}
+					self.article = response.responseText;
 					done();
 				}
 			});
+		},
+		ready: function() {
+			this.$el.innerHTML = this.article;
+			if (!this.edit) {
+				this.addAnchors();
+			}
+			else {
+				this.editor = new nabu.services.Editor(this.$el);
+			}
 		},
 		methods: {
 			addAnchors: function() {
@@ -32,23 +41,8 @@ nabu.components.wiki = {
 						this.$el.insertBefore(anchor, childNode);
 					}
 				}
-			},
-			addBlockQuoteHandler: function() {
-				var blockquotes = $("editor").getElementsByTagName("blockquote");
-				for (i = 0; i < blockquotes.length; i++) {
-					blockquotes[i].addEventListener("mousedown", function(event) {
-						if (event.which == keys.MOUSE_RIGHT) {
-							// TODO: show right click menu
-							event.preventDefault();
-							event.stopPropagation();
-						}
-					}, false);
-				}
 			}
 		}
-	}),
-	Editor: Vue.extend({
-
 	})
 };
 

@@ -6,6 +6,7 @@ nabu.services.Editor = function(element) {
 	this.element = element;
 	this.active = null;
 	this.keyListener = null;
+	this.onpaste = null;
 
 	this.select = function(element) {
 		if (self.isEditable(element)) {
@@ -41,6 +42,19 @@ nabu.services.Editor = function(element) {
 			self.unedit();
 			self.active.classList.remove("active");
 			self.active = null;
+		}
+	};
+
+	this.addBlockQuoteHandler = function() {
+		var blockquotes = $("editor").getElementsByTagName("blockquote");
+		for (i = 0; i < blockquotes.length; i++) {
+			blockquotes[i].addEventListener("mousedown", function(event) {
+				if (event.which == keys.MOUSE_RIGHT) {
+					// TODO: show right click menu
+					event.preventDefault();
+					event.stopPropagation();
+				}
+			}, false);
 		}
 	};
 
@@ -110,6 +124,48 @@ nabu.services.Editor = function(element) {
 		}
 		return true;
 	};
+
+	this.element.addEventListener("paste", function(event) {
+		var clipboard = event.clipboardData;
+		// in firefox the image is actually pasted as html, not image/png or something
+		// most of the time firefox just embeds the image, hence the extractImages method...
+		// not sure if this first if is actually ever triggered, perhaps if you copy from word or something?
+		if (clipboard.types && clipboard.types[0] == "text/html" && clipboard.getData) {
+			var data = clipboard.getData("text/html");
+			// only treat images this way
+			if (data.indexOf("<img") >= 0) {
+				var center = document.createElement("center");
+				center.innerHTML = data;
+				select.root.appendChild(center);
+				event.stopPropagation();
+				event.preventDefault();
+			}
+		}
+		// webkit
+		if (clipboard.items && clipboard.items[0].kind === 'file' && (clipboard.items[0].type === 'image/png' || clipboard.items[0].type === 'image/jpg' || clipboard.items[0].type === 'image/gif')) {
+			var data = clipboard.items[0].getAsFile();
+			var reader = new FileReader;
+			reader.onloadend = function() {
+				if (self.active) {
+					var image = document.createElement("img");
+					image.setAttribute("src", reader.result);
+					image.setAttribute("alt", data.name);
+					var center = document.createElement("center");
+					center.appendChild(image);
+					var next = nabu.utils.elements.next(self.active);
+					if (next) {
+						self.active.parentNode.insertBefore(center, next);
+					}
+					else {
+						self.active.parentNode.appendChild(center);
+					}
+				}
+			};
+			reader.readAsDataURL(data);
+			event.stopPropagation();
+			event.preventDefault();
+		}
+	}, false);
 
 	this.initialize = function() {
 		if (!self.element.classList.contains("editor")) {
