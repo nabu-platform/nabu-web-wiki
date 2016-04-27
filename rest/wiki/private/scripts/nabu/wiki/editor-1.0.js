@@ -64,14 +64,12 @@ nabu.services.Editor = function(element) {
 			for (var i = 0; i < self.active.childNodes.length; i++) {
 				if (self.active.childNodes[i].nodeType === 1) {
 					if (self.active.childNodes[i].tagName.toLowerCase() == "img") {
-						var center = document.createElement("center");
-						center.appendChild(self.active.childNodes[i]);
 						var insertBefore = nabu.utils.elements.next(self.active);
 						if (insertBefore == null) {
-							self.active.parentNode.appendChild(center);
+							self.active.parentNode.appendChild(self.active.childNodes[i]);
 						}
 						else {
-							self.active.parentNode.insertBefore(center, insertBefore);
+							self.active.parentNode.insertBefore(self.active.childNodes[i], insertBefore);
 						}
 					}
 				}
@@ -136,7 +134,7 @@ nabu.services.Editor = function(element) {
 			if (data.indexOf("<img") >= 0) {
 				var center = document.createElement("center");
 				center.innerHTML = data;
-				select.root.appendChild(center);
+				self.element.appendChild(center);
 				event.stopPropagation();
 				event.preventDefault();
 			}
@@ -150,14 +148,12 @@ nabu.services.Editor = function(element) {
 					var image = document.createElement("img");
 					image.setAttribute("src", reader.result);
 					image.setAttribute("alt", data.name);
-					var center = document.createElement("center");
-					center.appendChild(image);
 					var next = nabu.utils.elements.next(self.active);
 					if (next) {
-						self.active.parentNode.insertBefore(center, next);
+						self.active.parentNode.insertBefore(image, next);
 					}
 					else {
-						self.active.parentNode.appendChild(center);
+						self.active.parentNode.appendChild(image);
 					}
 				}
 			};
