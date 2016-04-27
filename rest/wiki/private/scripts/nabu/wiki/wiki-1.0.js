@@ -26,19 +26,54 @@ nabu.components.wiki = {
 		ready: function() {
 			var self = this;
 			this.$el.innerHTML = this.article;
+			this.keyListener = new nabu.services.KeyListener();
 			if (!this.edit) {
 				this.addAnchors();
 			}
 			else {
 				this.editor = new nabu.services.Editor(this.$el);
-				this.editor.keyListener.listen(function(event) {
+			}
+			// key listener for "save"
+			this.keyListener.listen(function(event) {
+				if (self.edit) {
 					event.preventDefault();
 					event.stopPropagation();
 					self.save();
-				}, nabu.constants.keys.CTRL, nabu.constants.keys.S);
-			}
+				}
+			}, nabu.constants.keys.CTRL, nabu.constants.keys.S);
+			// key listener to toggle edit mode
+			this.keyListener.listen(function(event) {
+				event.preventDefault();
+				event.stopPropagation();
+				self.toggleEdit();
+			}, nabu.constants.keys.CTRL, nabu.constants.keys.E);
 		},
 		methods: {
+			toggleEdit: function() {
+				var self = this;
+				if (self.edit) {
+					nabu.utils.ajax({
+						url: self.fullPath + "/item/" + self.path + "?type=text/html",
+						success: function(response) {
+							nabu.utils.elements.clear(self.$el);
+							self.$el.innerHTML = response.responseText;
+							self.edit = false;
+							self.addAnchors();
+						}
+					});
+				}
+				else {
+					nabu.utils.ajax({
+						url: self.fullPath + "/item/" + self.path + "?type=application/vnd-nabu-ehtml",
+						success: function(response) {
+							nabu.utils.elements.clear(self.$el);
+							self.$el.innerHTML = response.responseText;
+							self.edit = true;
+							self.editor = new nabu.services.Editor(self.$el);
+						}
+					});
+				}
+			},
 			addAnchors: function() {
 				for (var i = this.$el.childNodes.length - 1; i >= 0; i--) {
 					var childNode = this.$el.childNodes[i];
@@ -93,11 +128,9 @@ nabu.components.wiki = {
 								contentType: "application/vnd-nabu-ehtml",
 								data: self.$el.innerHTML,
 								success: function(response) {
-									console.log("SAVED!");
 									self.$emit("save.success");
 								},
 								error: function(response) {
-									console.log("Failed text save", response);
 									self.$emit("save.error");
 								}
 							});

@@ -34,6 +34,7 @@ nabu.services.Editor = function(element) {
 			self.extractImages();
 			self.active.classList.remove("editing");
 			self.active.contentEditable = false;
+			self.active.removeAttribute("contentEditable");
 		}
 	};
 
@@ -88,6 +89,9 @@ nabu.services.Editor = function(element) {
 	this.wrap = function(into) {
 		if (self.active != null) {
 			var isEditing = self.editing();
+			if (isEditing) {
+				self.unedit();
+			}
 			var newElement = document.createElement(into);
 			var current = self.active;
 			self.active.parentNode.replaceChild(newElement, self.active);
@@ -102,6 +106,9 @@ nabu.services.Editor = function(element) {
 	this.transform = function(into) {
 		if (self.active != null) {
 			var isEditing = self.editing();
+			if (isEditing) {
+				self.unedit();
+			}
 			var newElement = document.createElement(into);
 			newElement.innerHTML = self.active.innerHTML;
 			self.active.parentNode.replaceChild(newElement, self.active);
@@ -186,8 +193,16 @@ nabu.services.Editor = function(element) {
 			});
 
 			self.keyListener = new nabu.services.KeyListener();
-			self.keyListener.listen(self.edit, nabu.constants.keys.F2);
-			self.keyListener.listen(self.remove, nabu.constants.keys.DELETE);
+			self.keyListener.listen(function() {
+				if (!self.editing()) {
+					self.edit();
+				}
+			}, nabu.constants.keys.F2);
+			self.keyListener.listen(function(event) {
+				if (!self.editing()) {
+					self.remove();
+				}
+			}, nabu.constants.keys.DELETE);
 
 			// add a paragraph
 			self.keyListener.listen(function(event) {
