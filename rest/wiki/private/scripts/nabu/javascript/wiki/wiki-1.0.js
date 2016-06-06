@@ -14,9 +14,9 @@ nabu.components.wiki = {
 		activate: function(done) {
 			var self = this;
 			var type = this.edit ? "application/vnd-nabu-ehtml" : "text/html";
-			this.fullPath = this.wikiPath ? this.wikiPath + "/wiki" : "wiki";
+			this.fullPath = (this.wikiPath ? this.wikiPath + "/wiki" : "wiki").replace(/[\/]+$/, "");
 			nabu.utils.ajax({
-				url: this.fullPath + "/item/" + this.path + "?type=" + type,
+				url: this.fullPath + "/item/" + this.path.replace(/^[\/]+/, "") + "?type=" + type,
 				success: function(response) {
 					self.article = response.responseText;
 					done();
@@ -52,6 +52,7 @@ nabu.components.wiki = {
 			toggleEdit: function() {
 				var self = this;
 				if (self.edit) {
+					self.editor.unedit();
 					nabu.utils.ajax({
 						url: self.fullPath + "/item/" + self.path + "?type=text/html",
 						success: function(response) {
@@ -124,7 +125,7 @@ nabu.components.wiki = {
 						.success(function() {
 							nabu.utils.ajax({
 								method: "PUT",
-								url: self.fullPath + "/item/" + self.path,
+								url: self.fullPath.replace(/[\/]+$/, "") + "/item/" + self.path.replace(/^[\/]+/, ""),
 								contentType: "application/vnd-nabu-ehtml",
 								data: self.$el.innerHTML,
 								success: function(response) {
@@ -143,7 +144,7 @@ nabu.components.wiki = {
 			}
 		}
 	}),
-	Directory: function(wikiPath, path) {
+	Directory: function(path, wikiPath) {
 		var self = this;
 		this.fullPath = wikiPath ? wikiPath + "/wiki" : "wiki";
 		this.path = path ? path : "/";
@@ -171,7 +172,18 @@ nabu.components.wiki = {
 				success: handler
 			});
 		};
-
+		this.toc = function(name, handler) {
+			return nabu.utils.ajax({
+				method: "GET",
+				url: self.fullPath + "/toc/" + self.path + (name ? "/" + name : ""),
+				success: function(response) {
+					handler(response.responseText);
+				}
+			});
+		};
+		this.page = function(name, edit) {
+			return new nabu.components.wiki.Page({ data: { wikiPath: wikiPath, path: this.path.replace(/[\/]+$/, "") + (name ? "/" + name : ""), edit: typeof(edit) == "undefined" ? false : edit}});
+		};
 		this.write = function(name, handler, content, contentType) {
 			return nabu.utils.ajax({
 				method: "PUT",
@@ -180,21 +192,19 @@ nabu.components.wiki = {
 				success: handler
 			});
 		};
-
 		this.read = function(name, handler, contentType) {
 			return nabu.utils.ajax({
 				method: "GET",
-				url: self.fullPath + "/item/" + self.path + (contentType ? "?type=" + contentType : ""),
+				url: self.fullPath + "/item/" + self.path + (name ? "/" + name : "") + (contentType ? "?type=" + contentType : ""),
 				success: function(response) {
 					handler(response.responseText);
 				}
 			});
 		};
-
-		this.list = function(handler) {
+		this.list = function(handler, recursive) {
 			return nabu.utils.ajax({
 				method: "GET",
-				url: self.fullPath + "/list" + (self.path ? "/" + self.path : ""),
+				url: self.fullPath + "/list" + (self.path && self.path != "/" ? "/" + self.path : "") + (recursive ? "?recursive=true" : ""),
 				success: function(response) {
 					handler(JSON.parse(response.responseText));
 				}

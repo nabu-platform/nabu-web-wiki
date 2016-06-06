@@ -1,0 +1,86 @@
+.wiki-page cite {
+	background-color: #fff4cc;
+	border: dashed 1px #ffe070;
+	color: #b18a00;
+	font-weight: normal;
+	white-space: pre;
+}
+.wiki-page * {
+	font-family: Segoe UI, DejaVu Sans;
+	outline: 0px solid transparent;
+}
+.wiki-page p {
+	padding: 5;
+	margin: 5;
+}
+.wiki-page strong {
+	background-color: #ffc6c6;
+	border: dashed 1px #721300;
+	color: #7c0707;
+	font-weight: normal;
+}
+.wiki-page p.message strong:only-child {
+	padding: 5px;
+	display: block;
+}
+.wiki-page p.message cite:only-child {
+	padding: 5px;
+	display: block;
+}
+.wiki-page img {
+	margin: 0 auto;
+	max-width: 80%;
+	padding: 5px;
+	border: dashed 1px #CCCCCC;
+	display: block;	
+}
+.wiki-page li:not([class]):hover, .wiki-page p:not([class]):hover {
+	background-color: #EAEAEA;
+}
+.wiki-page li {
+	padding: 1px;
+}
+.wiki-page em {
+	font-weight: 600;
+	font-style: normal;
+}
+.wiki-page code {
+	font-weight: bold;
+	font-style: normal;
+	font-family: monospace;
+	background-color: #FAFAFA;
+	border: dashed 1px #CCCCCC;
+}
+.wiki-page blockquote {
+	white-space: pre;
+	display:block;
+	margin: 5 50;
+	padding: 10px;
+	background-color: #FAFAFA;
+	border: dashed 1px #CCCCCC;
+	margin: 10px;
+}
+.wiki-page blockquote, .wiki-page blockquote * {
+	font-family: monospace !important;
+	font-size: 9pt !important;
+}
+
+.wiki-page .bad {
+	background-color: #ffcdcd;
+	color: #7e0f0f;
+}
+
+.wiki-page .neutral {
+	background-color: #d3daf4;
+	color: #0d2b8e;
+}
+.wiki-page .good {
+	background-color: #d6fdc9;
+	color: #174d06;
+}
+.wiki-page div[table] {
+	margin: 0 auto;
+}
+.wiki-page div:not([class]) tr:nth-child(odd) {
+	background-color: #EAEAEA;
+}

@@ -1,0 +1,9 @@
+.editor .active {
+	background-color: #3e55ff;
+	color: #FFFFFF;
+}
+.editor .editing {
+	background-color: #fffde8;
+	border: dashed 1px #cdc585;
+	color: #000000;
+}

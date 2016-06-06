@@ -1,0 +1,25 @@
+.wiki-page .code-keyword {
+	color: #7f0055;
+}
+.wiki-page .code-string {
+	color: #0000FF;
+}
+.wiki-page .code-comment {
+	color: #3f7f5f;
+}
+.wiki-page .xml-element {
+	color: #008080;
+}
+.wiki-page .xml-attribute {
+	color: #7f007f;
+}
+.wiki-page .code-label {
+	font-weight: bold !important;
+	color: #AAAAAA !important;
+}
+.wiki-page .code-method {
+	color: #008080;	
+}
+.wiki-page .code-assign {
+	color: #7f007f;	
+}

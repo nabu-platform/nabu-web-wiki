@@ -1,0 +1,94 @@
+.wiki-toc {
+	counter-reset: toch1;
+	background-color: #FFFFFF;
+	padding: 10px 10px;
+	z-index: 0;
+}
+
+.wiki-toc ul li:before{
+	margin-right: 5px;
+	color: rgb(33,55,76);
+	background-color: #F4F4F4;
+	border: solid 1px rgb(154,183,211);
+	border: solid 1px #CCCCCC;
+	border-style: none none dashed solid;
+	padding: 2px 5px;
+	display: inline-block;
+}
+
+.wiki-toc li {
+	list-style-type: none;
+	color: rgb(33,55,76);
+}
+.wiki-toc li a {
+	color: #0078D0;
+	font-weight: normal;
+}
+.wiki-toc li:hover a {
+	color: #003757;
+	text-decoration: none;
+}
+.wiki-toc ul {
+	margin-left: 0px;
+	padding-left: 10px;
+}
+
+.wiki-toc > ul > li {
+	counter-reset: toch2;
+}
+.wiki-toc ul li:hover:before {
+	border-color: #003757;
+	color: #003757;
+	background-color: #DDDDDD;
+}
+.wiki-toc > ul > li:before {
+	content: counter(toch1);
+	counter-increment: toch1;
+}
+.wiki-toc > ul > li > a {
+	font-weight: bold;
+} 
+
+.wiki-toc > ul > ul > li {
+	counter-reset: toch3;
+}
+.wiki-toc > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2);
+	counter-increment: toch2;
+}
+
+.wiki-toc > ul > ul > ul > li{
+	counter-reset: toch4;
+}
+.wiki-toc > ul > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2) "." counter(toch3);
+	counter-increment: toch3;
+}
+
+.wiki-toc > ul > ul > ul > ul > li{
+	counter-reset: toch5;
+}
+.wiki-toc > ul > ul > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2) "." counter(toch3) "." counter(toch4);
+	counter-increment: toch4;
+}
+
+.wiki-toc > ul > ul > ul > ul > ul > li{
+	counter-reset: toch6;
+}
+.wiki-toc > ul > ul > ul > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2) "." counter(toch3) "." counter(toch4) "." counter(toch5);
+	counter-increment: toch5;
+}
+
+.wiki-toc > ul > ul > ul > ul > ul > ul > li{
+	counter-reset: toch7;
+}
+.wiki-toc > ul > ul > ul > ul > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2) "." counter(toch3) "." counter(toch4) "." counter(toch5) "." counter(toch6);
+	counter-increment: toch6;
+}
+.wiki-toc > ul > ul > ul > ul > ul > ul > ul > li:before {
+	content: counter(toch1) "." counter(toch2) "." counter(toch3) "." counter(toch4) "." counter(toch5) "." counter(toch6) "." counter(toch7);
+	counter-increment: toch7;
+}
