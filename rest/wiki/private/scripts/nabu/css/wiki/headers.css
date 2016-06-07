@@ -20,7 +20,6 @@ body {
 	content: counter(chapter1) ". ";
 	counter-increment: chapter1;
 }
-
 .wiki-page h2 {
 	border: solid 1px #666666;
 	border-style: none none dashed none;
@@ -28,6 +27,7 @@ body {
 	color: #666666;
 	font-weight: normal;
 	counter-reset: chapter3;
+	margin-top: 40px;
 }
 .wiki-page h2:before {
 	content: counter(chapter1) "." counter(chapter2) " ";
