@@ -14,7 +14,7 @@ nabu.components.wiki = {
 		activate: function(done) {
 			var self = this;
 			var type = this.edit ? "application/vnd-nabu-ehtml" : "text/html";
-			this.fullPath = (this.wikiPath ? this.wikiPath + "/wiki" : "wiki").replace(/[\/]+$/, "");
+			this.fullPath = (this.wikiPath ? this.wikiPath.replace(/[\/]+$/, "") + "/wiki" : "wiki").replace(/[\/]+$/, "");
 			nabu.utils.ajax({
 				url: this.fullPath + "/item/" + this.path.replace(/^[\/]+/, "") + "?type=" + type,
 				success: function(response) {
@@ -146,7 +146,7 @@ nabu.components.wiki = {
 	}),
 	Directory: function(path, wikiPath) {
 		var self = this;
-		this.fullPath = wikiPath ? wikiPath + "/wiki" : "wiki";
+		this.fullPath = wikiPath ? wikiPath.replace(/[\/]+$/, "") + "/wiki" : "wiki";
 		this.path = path ? path : "/";
 
 		this.delete = function(name, handler) {
@@ -173,11 +173,14 @@ nabu.components.wiki = {
 			});
 		};
 		this.toc = function(name, handler) {
+			var tocPath = self.path.replace(/[\/]+$/, "").replace(/^[\/]+/, "");
 			return nabu.utils.ajax({
 				method: "GET",
-				url: self.fullPath + "/toc/" + self.path + (name ? "/" + name : ""),
+				url: self.fullPath + "/toc/" + tocPath + (tocPath == "" ? "" : "/") + (name ? name : ""),
 				success: function(response) {
-					handler(response.responseText);
+					if (handler) {
+						handler(response.responseText);
+					}
 				}
 			});
 		};
@@ -197,7 +200,9 @@ nabu.components.wiki = {
 				method: "GET",
 				url: self.fullPath + "/item/" + self.path + (name ? "/" + name : "") + (contentType ? "?type=" + contentType : ""),
 				success: function(response) {
-					handler(response.responseText);
+					if (handler) {
+						handler(response.responseText);
+					}
 				}
 			});
 		};
@@ -206,7 +211,9 @@ nabu.components.wiki = {
 				method: "GET",
 				url: self.fullPath + "/list" + (self.path && self.path != "/" ? "/" + self.path : "") + (recursive ? "?recursive=true" : ""),
 				success: function(response) {
-					handler(JSON.parse(response.responseText));
+					if (handler) {
+						handler(JSON.parse(response.responseText));
+					}
 				}
 			});
 		};

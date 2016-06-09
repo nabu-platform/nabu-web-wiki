@@ -15,7 +15,9 @@
 	padding: 2px 5px;
 	display: inline-block;
 }
-
+.wiki-toc > ul > li {
+	margin-top: 20px;
+}
 .wiki-toc li {
 	list-style-type: none;
 	color: rgb(33,55,76);
