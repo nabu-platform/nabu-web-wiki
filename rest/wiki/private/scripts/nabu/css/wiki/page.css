@@ -84,3 +84,19 @@
 .wiki-page div:not([class]) tr:nth-child(odd) {
 	background-color: #EAEAEA;
 }
+.wiki-page a {
+	color: #0090FF;
+	text-decoration: none;	
+}
+.wiki-page a:hover {
+	text-decoration: underline;
+}
+.wiki-page a.external:after {
+	content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABHNCSVQICAgIfAhkiAAAAH1JREFUGJVtkNENwzAIRJ+rbMROeCY8E8x0/XAaObVPOiEh4AENlzhIQXtnXJs8UhYpSfy8FVqk7hyrr3+km9ELWi8d0RapSZMipZWEpy6APoqqOQkHtxlbB8Wc91HQ6rmy6ANGQVURvr5hvczzRulZ44U+/HDTVth6nXr5Aje+nS1wSJzaAAAAAElFTkSuQmCC');
+	margin-left: 5px;
+	margin-right: 1pt;
+}
+.wiki-page a.internal[exists=false] {
+	color: #ac0000;	
+}
+
