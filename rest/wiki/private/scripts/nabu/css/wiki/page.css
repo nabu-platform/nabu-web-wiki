@@ -6,7 +6,7 @@
 	white-space: pre;
 }
 .wiki-page * {
-	font-family: Segoe UI, DejaVu Sans;
+	font-family: Segoe UI, DejaVu Sans, sans, sans-serif;
 	outline: 0px solid transparent;
 }
 .wiki-page p {
