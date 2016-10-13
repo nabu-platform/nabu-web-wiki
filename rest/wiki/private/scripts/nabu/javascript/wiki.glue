@@ -1,4 +1,4 @@
-string [] resources ?= array("keys-1.0.js", "editor-1.0.js", "wiki-1.0.js")
+string [] resources ?= series("keys-1.0.js", "editor-1.0.js", "wiki-1.0.js")
 
 for (resource : resources)
-	echo(string(resource) + "\n")
+	echo(resource(resource), "\n")

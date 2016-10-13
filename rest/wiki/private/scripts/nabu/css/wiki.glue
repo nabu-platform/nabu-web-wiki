@@ -1,4 +1,4 @@
 string [] resources ?= resources()
 
 for (resource : resources)
-	echo(string(resource) + "\n")
+	echo(resource(resource), "\n")
