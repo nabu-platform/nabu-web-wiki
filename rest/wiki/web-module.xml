@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><webModule><path>/wiki</path><webFragments>nabu.web.wiki.rest.list</webFragments><webFragments>nabu.web.wiki.rest.listRoot</webFragments><webFragments>nabu.web.wiki.rest.read</webFragments><webFragments>nabu.web.wiki.rest.tableOfContents</webFragments><webFragments>nabu.web.wiki.rest.write</webFragments><webFragments>nabu.web.core.components</webFragments><webFragments>nabu.web.wiki.rest.store</webFragments><webFragments>nabu.web.wiki.rest.download</webFragments><webFragments>nabu.web.wiki.rest.delete</webFragments></webModule>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<webModule>
+    <path>/wiki</path>
+    <webFragments>nabu.web.wiki.rest.download</webFragments>
+    <webFragments>nabu.web.wiki.rest.read</webFragments>
+    <webFragments>nabu.web.wiki.rest.tableOfContents</webFragments>
+    <webFragments>nabu.web.wiki.rest.list</webFragments>
+    <webFragments>nabu.web.wiki.rest.listRoot</webFragments>
+</webModule>

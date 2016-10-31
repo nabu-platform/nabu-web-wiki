@@ -8,7 +8,8 @@ nabu.components.wiki = {
 		data: function() {
 			return {
 				article: null,
-				fullPath: null
+				fullPath: null,
+				editable: true
 			};
 		},
 		activate: function(done) {
@@ -50,29 +51,31 @@ nabu.components.wiki = {
 		},
 		methods: {
 			toggleEdit: function() {
-				var self = this;
-				if (self.edit) {
-					self.editor.unedit();
-					nabu.utils.ajax({
-						url: self.fullPath + "/item/" + self.path + "?type=text/html",
-						success: function(response) {
-							nabu.utils.elements.clear(self.$el);
-							self.$el.innerHTML = response.responseText;
-							self.edit = false;
-							self.addAnchors();
-						}
-					});
-				}
-				else {
-					nabu.utils.ajax({
-						url: self.fullPath + "/item/" + self.path + "?type=application/vnd-nabu-ehtml",
-						success: function(response) {
-							nabu.utils.elements.clear(self.$el);
-							self.$el.innerHTML = response.responseText;
-							self.edit = true;
-							self.editor = new nabu.services.Editor(self.$el);
-						}
-					});
+				if (this.editable) {
+					var self = this;
+					if (self.edit) {
+						self.editor.unedit();
+						nabu.utils.ajax({
+							url: self.fullPath + "/item/" + self.path + "?type=text/html",
+							success: function(response) {
+								nabu.utils.elements.clear(self.$el);
+								self.$el.innerHTML = response.responseText;
+								self.edit = false;
+								self.addAnchors();
+							}
+						});
+					}
+					else {
+						nabu.utils.ajax({
+							url: self.fullPath + "/item/" + self.path + "?type=application/vnd-nabu-ehtml",
+							success: function(response) {
+								nabu.utils.elements.clear(self.$el);
+								self.$el.innerHTML = response.responseText;
+								self.edit = true;
+								self.editor = new nabu.services.Editor(self.$el);
+							}
+						});
+					}
 				}
 			},
 			addAnchors: function() {

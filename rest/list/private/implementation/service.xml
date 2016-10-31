@@ -1,20 +1,20 @@
 <sequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" disabled="false" id="4018094c-4a35-4422-bba1-6f739302db18">
 	<steps xsi:type="be.nabu.libs.services.vm.step.Map" disabled="false" id="87ef3000-974e-4816-9084-87908997d015">
-		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b6ed5dcb-297e-4eed-832b-aaedecdad5bf" serviceId="nabu.web.wiki.Services.list" resultName="result968deca446374cbc9d9999b3352c7291" invocationOrder="0" temporaryMapping="true" x="244" y="101">
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="58b13a5d-f19d-4ce4-adc4-7a92458c56c2" optional="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Invoke" disabled="false" id="b6ed5dcb-297e-4eed-832b-aaedecdad5bf" serviceId="nabu.web.wiki.Services.list" resultName="result968deca446374cbc9d9999b3352c7291" invocationOrder="0" temporaryMapping="true" y="101" x="244">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="58b13a5d-f19d-4ce4-adc4-7a92458c56c2" optional="false" mask="false" fixedValue="false">
 				<from>input/configuration/wikiId</from>
 				<to>wikiId</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e42184e7-fff7-4a54-8b61-cf4668a29e6d" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="e42184e7-fff7-4a54-8b61-cf4668a29e6d" optional="false" mask="false" fixedValue="false">
 				<from>input/path/path</from>
 				<to>path</to>
 			</steps>
-			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cbfd3165-e531-4b18-a863-d924bc41a524" optional="false" fixedValue="false">
+			<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="cbfd3165-e531-4b18-a863-d924bc41a524" optional="false" mask="false" fixedValue="false">
 				<from>input/query/recursive[0]</from>
 				<to>recursive</to>
 			</steps>
 		</steps>
-		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c51daeff-28bb-471d-aabd-5d4517c90a29" optional="false" fixedValue="false">
+		<steps xsi:type="be.nabu.libs.services.vm.step.Link" disabled="false" id="c51daeff-28bb-471d-aabd-5d4517c90a29" optional="false" mask="false" fixedValue="false">
 			<from>result968deca446374cbc9d9999b3352c7291/listing</from>
 			<to>output/content</to>
 		</steps>

@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nabu.web</groupId>
 	<artifactId>wiki</artifactId>
-	<version>1.0</version>
+	<version>1.1-SNAPSHOT</version>
 	<name>wiki</name>
 	
 	<parent>
