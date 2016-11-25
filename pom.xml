@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nabu.web</groupId>
 	<artifactId>wiki</artifactId>
-	<version>1.1-SNAPSHOT</version>
+	<version>${nabu.web-wiki-version}</version>
 	<name>wiki</name>
 	
 	<parent>
@@ -18,7 +18,14 @@
 		<dependency>
 			<groupId>nabu.web</groupId>
 			<artifactId>application</artifactId>
-			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>nabu.frameworks</groupId>
+			<artifactId>datastore</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>nabu.types</groupId>
+			<artifactId>xml</artifactId>
 		</dependency>
 	</dependencies>
 </project>
