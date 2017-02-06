@@ -6,4 +6,5 @@
     <webFragments>nabu.web.wiki.rest.tableOfContents</webFragments>
     <webFragments>nabu.web.wiki.rest.list</webFragments>
     <webFragments>nabu.web.wiki.rest.listRoot</webFragments>
+    <webFragments>nabu.web.wiki.resources</webFragments>
 </webModule>
