@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<webModule>
+    <webFragments>nabu.web.wiki.rest.list</webFragments>
+    <webFragments>nabu.web.wiki.rest.listRoot</webFragments>
+</webModule>
