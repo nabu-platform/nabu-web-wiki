@@ -1,1 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" lastModified="2016-04-27T21:01:06.659+02:00" leaf="true" version="4"><environmentId>chaos</environmentId><properties/><references>nabu.web.wiki.types.configuration</references><references>java.lang.String</references><references>nabu.web.wiki.Services.delete</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2025-03-28T14:00:37.924+01:00" lastModified="2025-03-28T14:00:37.924+01:00" leaf="true" version="5">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.web.wiki.types.configuration</references>
+    <references>java.lang.String</references>
+    <references>nabu.web.wiki.Services.delete</references>
+</node>

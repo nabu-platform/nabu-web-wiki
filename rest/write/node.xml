@@ -1,1 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" lastModified="2016-06-06T21:26:55.525+02:00" leaf="true" version="10"><environmentId>chaos</environmentId><properties/><references>nabu.web.wiki.Services.create</references><references>nabu.web.wiki.Services.write</references><references>nabu.web.wiki.types.configuration</references><references>java.lang.String</references><references>nabu.utils.Object.toProperties</references><references>java.io.InputStream</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2025-03-28T14:00:53.947+01:00" lastModified="2025-03-28T14:00:53.947+01:00" leaf="true" version="11">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.web.wiki.Services.create</references>
+    <references>nabu.web.wiki.Services.write</references>
+    <references>nabu.web.wiki.types.configuration</references>
+    <references>java.lang.String</references>
+    <references>nabu.utils.Object.toProperties</references>
+    <references>java.io.InputStream</references>
+</node>

@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" lastModified="2016-07-22T09:47:57.625+02:00" leaf="true" version="9"><environmentId>hyperion</environmentId><properties/><references>nabu.frameworks.datastore.Services.retrieve</references><references>nabu.frameworks.datastore.Services.properties</references><references>nabu.utils.Uri.toComponents</references><references>nabu.web.wiki.types.configuration</references><references>java.lang.String</references><references>java.io.InputStream</references><references>nabu.web.wiki.Services.read</references></node>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<node artifactManager="be.nabu.eai.module.rest.provider.RESTServiceManager" created="2025-03-28T14:00:43.622+01:00" lastModified="2025-03-28T14:00:43.622+01:00" leaf="true" version="10">
+    <environmentId>ares</environmentId>
+    <hidden>false</hidden>
+    <locked>false</locked>
+    <properties/>
+    <references>nabu.frameworks.datastore.Services.retrieve</references>
+    <references>java.lang.Long</references>
+    <references>nabu.frameworks.datastore.Services.properties</references>
+    <references>nabu.utils.Uri.toComponents</references>
+    <references>nabu.web.wiki.types.configuration</references>
+    <references>java.lang.String</references>
+    <references>java.io.InputStream</references>
+    <references>nabu.web.wiki.Services.read</references>
+</node>

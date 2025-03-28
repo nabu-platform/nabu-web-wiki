@@ -1,4 +1,4 @@
-<structure interface="$self:api" name="pipeline">
+<structure interface="nabu.web.wiki.rest.download:api" name="pipeline">
     <structure name="input"/>
     <structure name="output"/>
 </structure>
